@@ -1,0 +1,84 @@
+﻿@model daw.Models.Comment
+
+@{
+    ViewBag.Title = "Posts";
+}
+
+<h2>Posts</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <p>User</p>
+        </th>
+        <th>
+            <p>Date of post</p>
+        </th>
+        <th>
+            <p>Text Content</p>
+        </th>
+        <th>
+           Imagini
+        </th>
+    </tr>
+
+@foreach (var item in ViewBag.Posts)
+{
+    <tr>
+        <td>
+            <p>@item.UserName</p>
+        </td>
+        <td>
+            <p>@item.DateOfPost</p>
+        </td>
+        <td>
+            <p>@item.TextContent</p>
+        </td>
+        <td>
+            @foreach (var img in item.Images)
+            {
+                <img width="100" height="50" src="@img.Path" />
+            }
+        </td>
+        <td>
+
+        </td>
+        <td>
+            @Html.ActionLink("Like", "AddLike", new { id = item.PostId }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.PostId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.PostId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.PostId })
+        </td>
+    </tr>
+   foreach (var com in item.Comments)
+    {
+        <tr>    
+            <td>
+                @com.UserName
+            </td>
+            <td>
+                @com.TextContent
+            </td>
+        </tr>
+    }
+
+    <tr>
+       @using (Html.BeginForm("NewComment", "Comment", FormMethod.Post,
+                                          new { enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(m => m.PostId, new { Value = item.PostId })
+        <td>
+            @Html.TextAreaFor(m => m.TextContent, new { @class = "form-control" })
+        </td>
+        <td>
+            <button name="NewComment">Comment</button>
+        </td>
+
+        }
+    </tr>
+}
+
+</table>
