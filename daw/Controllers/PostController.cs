@@ -40,7 +40,7 @@ namespace daw.Controllers
         }
         [HttpPost]
         [Authorize(Roles= "Administrator,RegistredUser")]
-        public ActionResult Create(Post post, HttpPostedFileBase[] files)
+        public ActionResult CreatePost(Post post, HttpPostedFileBase[] files)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace daw.Controllers
                 {
                     foreach(HttpPostedFileBase file in files)
                     {
-                        file.SaveAs(HttpContext.Server.MapPath("~/Post/Images/")
+                        file.SaveAs(HttpContext.Server.MapPath("~/Images/")
                                                           + file.FileName);
                         Image img = new Image();
                         img.Path = "Images/" + file.FileName;

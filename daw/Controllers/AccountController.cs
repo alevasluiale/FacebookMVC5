@@ -164,7 +164,7 @@ namespace daw.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     UserManager.AddToRole(user.Id, "RegistredUser");
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("List", "Post");
                 }
                 AddErrors(result);
             }
@@ -393,7 +393,7 @@ namespace daw.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("List", "Post");
         }
 
         //
@@ -450,7 +450,7 @@ namespace daw.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("List", "Post");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

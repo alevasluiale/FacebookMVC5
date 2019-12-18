@@ -19,7 +19,7 @@ namespace daw.Models
         public DateTime DateOfPost { get; set; }
         public String UserName { get; set; }
         [DisplayName("Text Content")]
-        public String TextContent { get; set; }
+        public String Content { get; set; }
 
         //public virtual ICollection<Like> Likes { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }

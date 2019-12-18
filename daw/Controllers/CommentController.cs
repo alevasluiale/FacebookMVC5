@@ -21,12 +21,13 @@ namespace daw.Controllers
                 comment.UserId = User.Identity.GetUserId();
                 db.Comments.Add(comment);
                 db.SaveChanges();
-                return RedirectToRoute("List");
+                return RedirectToAction("List","Post");
             }
             catch
             {
-                return RedirectToRoute("List");
+                return RedirectToAction("List","Post");
             }
         }
+       
     }
 }
